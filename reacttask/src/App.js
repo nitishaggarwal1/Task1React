@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import './App.css';
 import Table from './components/Tables';
 import axios from 'axios';
@@ -6,6 +6,10 @@ import axios from 'axios';
 function App() {
   const [headers, setHeaders] = useState([]);
   const [data, setData] = useState([]);
+
+  const addButton = useRef();
+  const deleteButton= useRef();
+
 
 //   const headers = ["fname", "lname"];
 //   const data = [
@@ -31,22 +35,32 @@ function App() {
 
   const deleteLastItem = () => {
     const newData = data.splice(0, data.length - 1);
-    setData(newData);
-    setHeaders(Object.keys(data[0]));
+    console.log(newData.length);
+    if(newData.length >= 0){
+      setData(newData);
+      setHeaders(Object.keys(data[0]));
+    }
   }
 
   const addFirstItemToLast  = () => {
     const newData = [...data, data[0]];
-    setData(newData);
-    setHeaders(Object.keys(data[0]));
+    console.log(newData.length);
+    if(newData.length <= 1){
+      console.log(newData.length);
+    }else {
+      setData(newData);
+      setHeaders(Object.keys(data[0]));
+    }
   }
 
   return (
-    <div className="App">
-      <button onClick={loadData}>LOAD</button>
-      <button onClick={deleteLastItem}>DELETE</button>
-      <button onClick={addFirstItemToLast}>ADD</button>
+    <div>
       <Table headers={headers} data={data}/>
+      <div className="button-actions">
+        <button onClick={loadData}>LOAD</button>
+        {data.length===0 ? '' :  <button ref={deleteButton} onClick={deleteLastItem}>DELETE</button>}
+        {data.length===0 ? '' : <button ref={addButton} onClick={addFirstItemToLast}>ADD</button>}
+      </div>
     </div>
   );
 }
