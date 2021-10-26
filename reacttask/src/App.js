@@ -58,8 +58,12 @@ function App() {
     <Card>
       <div className="button-actions">
         <button onClick={loadData}>LOAD</button>
-        {data.length===0 ? '' :  <button ref={deleteButton} onClick={deleteLastItem}>DELETE</button>}
-        {data.length===0 ? '' : <button ref={addButton} onClick={addFirstItemToLast}>ADD</button>}
+        {data.length===0 ? '' : 
+        <React.Fragment> 
+        <button ref={deleteButton} onClick={deleteLastItem}>DELETE</button>
+        <button ref={addButton} onClick={addFirstItemToLast}>ADD</button>
+        </React.Fragment>
+        }
       </div>
       <Table headers={headers} data={data}/>
     </Card>

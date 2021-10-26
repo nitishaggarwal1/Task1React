@@ -16,10 +16,11 @@
   color: white;
   border-radius: 12px;
   margin-right: 2rem;
+  font-weight: 900;
 }
 
 .button-actions button:hover,
 .button-actions button:active {
-  background-color: #080808;
+  background-color: #141414;
   border-color: #080808;
 }

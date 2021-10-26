@@ -1,5 +1,4 @@
 import styles from './Table.module.css';
-import Card from '../UI/Card';
 
 const Table = ({headers, data}) => { 
     return (
