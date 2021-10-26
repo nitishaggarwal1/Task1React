@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import './App.css';
 import Table from './components/Tables';
 import axios from 'axios';
+import Card from './UI/Card';
 
 function App() {
   const [headers, setHeaders] = useState([]);
@@ -54,14 +55,14 @@ function App() {
   }
 
   return (
-    <div>
-      <Table headers={headers} data={data}/>
+    <Card>
       <div className="button-actions">
         <button onClick={loadData}>LOAD</button>
         {data.length===0 ? '' :  <button ref={deleteButton} onClick={deleteLastItem}>DELETE</button>}
         {data.length===0 ? '' : <button ref={addButton} onClick={addFirstItemToLast}>ADD</button>}
       </div>
-    </div>
+      <Table headers={headers} data={data}/>
+    </Card>
   );
 }
 
